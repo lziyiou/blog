@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- 适应移动端 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>博客详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" th:href="@{/css/typo.css}" href="../static/css/typo.css">
+    <link rel="stylesheet" th:href="@{/css/me.css}" href="../static/css/me.css">
+    <link rel="stylesheet" th:href="@{/lib/prism/prism.css}" href="../static/lib/prism/prism.css">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragment::navigation(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <!-- Logo -->
+            <h2 class="ui blue header item">Blog</h2>
+            <!-- 左边导航栏 -->
+            <a href="#" class="m-item item m-mobile-hide"><i class="small home icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="small idea icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="small tags icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="small clone icon"></i>归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="small info icon"></i>关于我</a>
+            <!-- 右边搜索栏 -->
+            <div class="right item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <!-- 搜索框 -->
+                    <input type="text" placeholder="Search....">
+                    <!-- 右边搜索小图标 -->
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!-- 中间内容 -->
+<div class="m-container-small m-padded-tb-large">
+    <div th:each="blog:${blogPage}" class="ui container">
+        <!-- 头部 -->
+        <div class="ui top attached segment">
+            <div class="ui horizontal link list">
+                <!-- 作者信息-->
+                <div class="item">
+                    <img th:src="@{${blog.user.avatar}}" src="https://picsum.photos/id/1074/5472/3648" alt=""
+                         class="ui avatar image">
+                    <div class="content">
+                        <a href="#" th:href="@{/about}" th:text="${blog.user.nickname}" class="header">Lziyiou</a>
+                    </div>
+                </div>
+                <!-- 日期 -->
+                <div class="item">
+                    <i class="calendar icon"></i>
+                    <span th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd HH:mm')}">2019-10-23</span>
+                </div>
+                <!-- 浏览次数 -->
+                <div class="item">
+                    <i class="eye icon"></i>
+                    <span th:text="${blog.views}">1024</span>
+                </div>
+            </div>
+        </div>
+        <!-- 图片部 -->
+        <div class="ui attached segment">
+            <img th:src="@{${blog.firstPicture}}" src="https://picsum.photos/id/1036/4608/3072" alt="" class="ui fluid rounded image">
+        </div>
+        <!-- 内容部 -->
+        <div class="ui attached padded segment">
+            <!-- 分类 -->
+            <div class="ui right aligned basic segment">
+                <div th:text="${blog.flag}" class="ui orange basic label">原创</div>
+            </div>
+            <!-- 标题 -->
+            <h2 th:text="${blog.title}" class="ui center aligned header">我想要我的自由！</h2>
+            <br>
+            <!-- 内容 -->
+            <div id="content" th:utext="${blog.content}" class=" m-padded-lr-huge-responsive m-margin-bottom-big" style="min-height: 200px">
+                《活着》<br/>演唱：郝云<br/><br/>累了站在高楼上 <br/>看着地上的小蚂蚁<br/>他们的头很大 <br/>他们的腿很细<br/>他们拿着苹果手机 <br/>他们穿着耐克阿迪<br/>上班就要迟到了
+                <br/>他们很着急<br/>我那可怜的吉普车 <br/>很久没爬山也没过河<br/>他在这个城市里 <br/>过的很压抑<br/>虽然他什么都没说<br/>但我知道他很难过<br/>我悄悄的许下愿望
+                <br/>带他去蒙古国<br/>慌慌张张 匆匆忙忙 <br/>为何生活总是这样<br/>难道说 我的理想 <br/>就是这样渡过一生的时光<br/>不卑不亢 不慌不忙
+                <br/>也许生活应该这样<br/>难道说
+                60岁后再去寻找<br/>我想要的自由<br/>
+                一年一年飞逝而去 <br/>还是那一点点小积蓄<br/>我喜欢的好多东西还是买不起<br/>生活总麻烦不断 <br/>到现在我还没习惯<br/>都说钱是王八蛋
+                <br/>可长的真好看<br/>慌慌张张 匆匆忙忙 <br/>为何生活总是这样<br/>难道说 我的理想 <br/>就是这样渡过一生的时光<br/>不卑不亢 不慌不忙
+                <br/>也许生活应该这样<br/>难道说
+                60岁后 <br/>再去寻找我想要的自由<br/>我不想这样活着<br/>我不想这样活着<br/>我不想这样活着<br/>我不想这样活着<br/>我不想这样活着<br/>我不想这样活着<br/>我不想这样活着<br/>我不想这样活着<br/>我不想这样慌慌张张
+                <br/>匆匆忙忙 <br/>为何生活总是这样<br/>难道说 我的理想 <br/>就是这样渡过一生的时光<br/>不卑不亢 不慌不忙 <br/>也许生活应该这样<br/>难道说 60岁后 <br/>再去寻找我想要的自由<br/>其实我也常跟自己说
+                <br/>人要学会知足而常乐<br/>可万事都一笑而过 <br/>还有什么意思呢
+
+            </div>
+            <hr>
+
+            <!-- 标签 -->
+            <div class="m-padded-lr-huge-responsive m-padded-tb-small">
+                <a href="#" th:each="tag:${blog.tags}" th:href="@{/tag/{id}(id=${tag.id})}" th:text="${tag.name}" class="ui basic blue mini left pointing label">方法论</a>
+            </div>
+
+            <!-- 分类 -->
+            <div class="m-padded-lr-huge-responsive m-padded-tb-small">
+                <a href="#" th:href="@{/category/{id}(id=${blog.category.id})}" th:text="${blog.category.name}" class="ui basic blue button mini">方法论</a>
+            </div>
+
+            <!-- 赞赏 -->
+            <div class="ui center aligned basic segment">
+                <button id="payButton" class="ui orange basic circular button">赞赏</button>
+            </div>
+            <!-- 二维码 -->
+            <div class="ui payQR flowing popup transition hidden">
+                <div class="ui orange basic label">
+                    <div class="ui images" style="font-size: inherit">
+                        <div class="image">
+                            <img th:src="@{/images/wechat_money.jpg}" src="../static/images/wechat_money.jpg" alt="" class="ui rounded bordered image"
+                                 style="width: 150px">
+                            <div>微信</div>
+                        </div>
+                        <div class="image">
+                            <img th:src="@{/images/alipay_money.jpg}" src="../static/images/alipay_money.jpg" alt="" class="ui rounded bordered image"
+                                 style="width: 150px">
+                            <div>支付宝</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 留言部 -->
+        <div class="ui bottom attached segment">
+            <div class="ui blue segment">
+                <div class="ui threaded comments">
+                    <h3 class="ui dividing header">评论</h3>
+                    <div th:each="comment:${blog.comments}" class="comment">
+                        <a class="avatar">
+                            <img th:src="@{${comment.avatar}}" src="https://www.diyimei.net/upload/2018/1537192515751749.jpg">
+                        </a>
+                        <div class="content">
+                            <a th:text="${comment.nickname}" class="author">Matt</a>
+                            <div class="metadata">
+                                <span th:text="${#dates.format(comment.createTime, 'yyyy-MM-dd HH:mm')}" class="date">今天下午 5:42</span>
+                            </div>
+                            <div th:text="${comment.content}" class="text">太赞了！</div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:each="comment:${blog.comments}" class="comment">
+                        <a class="avatar">
+                            <img th:src="@{${comment.avatar}}" src="https://picsum.photos/id/1074/5472/3648">
+                        </a>
+                        <div class="content">
+                            <a th:text="${comment.nickname}" class="author">Elliot Fu</a>
+                            <div class="metadata">
+                                <span th:text="${#dates.format(comment.createTime, 'yyyy-MM-dd HH:mm')}" class="date">昨天上午12:30</span>
+                            </div>
+                            <div th:text="${comment.content}" class="text">
+                                <p>這對我的研究是非常有用.謝謝!</p>
+                            </div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                        <div class="comments">
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="https://picsum.photos/id/1074/5472/3648">
+                                </a>
+                                <div class="content">
+                                    <a class="author">Jenny Hess</a>
+                                    <div class="metadata">
+                                        <span class="date">刚刚</span>
+                                    </div>
+                                    <div class="text">艾略特你永远是多么正确 :)</div>
+                                    <div class="actions">
+                                        <a class="reply">回复</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/id/1074/5472/3648">
+                        </a>
+                        <div class="content">
+                            <a class="author">Joe Henderson</a>
+                            <div class="metadata">
+                                <span class="date">5 天以前</span>
+                            </div>
+                            <div class="text">老兄，这太棒了。非常感谢。</div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui form">
+                <div class="field">
+                    <textarea name="content" cols="30" rows="10" placeholder="请输入评论信息...."></textarea>
+                </div>
+                <div class="fields">
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="nickname" placeholder="昵称">
+                        </div>
+                    </div>
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input type="email" name="email" placeholder="邮箱">
+                        </div>
+                    </div>
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <button class="ui blue button"><i class="edit icon"></i>发布</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 底部 -->
+<!--        <div class="ui bottom attached segment">-->
+<!--            <div class="ui middle aligned two column grid">-->
+<!--                <div class="column">-->
+<!--                    <a href="#" class="ui mini blue basic button">上一篇</a>-->
+<!--                </div>-->
+<!--                <div class="right aligned column">-->
+<!--                    <a href="#" class="ui mini blue basic button">下一篇</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer th:replace="_fragment::footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <!-- 容器（内容居中） -->
+    <div class="ui center aligned container">
+        <!-- 开启布局，加上分割线 -->
+        <div class="ui inverted divided stackable grid">
+            <!-- 微信二维码区 -->
+            <div class="four wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <!-- 微信二维码图片 -->
+                        <img th:src="@{/images/wechat.jpg}" src="../static/images/wechat.jpg" alt="" class="ui rounded image" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <!-- 联系我区 -->
+            <div class="five wide column">
+                <!-- 标题 -->
+                <h4 class="ui inverted header m-text-thin m-text-spaced m-opacity-small">联系我</h4>
+                <!-- 联系列表 -->
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email: 787492833@qq.com</a>
+                    <a href="#" class="item">WeChat: lyc_787492833</a>
+                </div>
+            </div>
+            <!-- 博客简介区 -->
+            <div class="seven wide column">
+                <div class="ui inverted link list">
+                    <!-- 标题 -->
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-opacity-small">Blog</h4>
+                    <!-- 简介内容 -->
+                    <p class="m-text-thin m-text-spaced m-opacity-mini">
+                        这是我的个人博客，会分享关于编络、写作、思考相关的任何内容。希望可以给来到这的人带来一点点微小的帮助！</p>
+                </div>
+            </div>
+        </div>
+        <!-- 分割线 -->
+        <div class="ui inverted section divider"></div>
+        <!-- Copyright -->
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2019-2021 Lziyiou Designed by Lziyiou</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script th:src="@{/lib/prism/prism.js}" src="../static/lib/prism/prism.js"></script>
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('#payButton').popup({
+        popup: $('.payQR.popup'),
+        position: 'bottom center'
+    });
+</script>
+</body>
+</html>
